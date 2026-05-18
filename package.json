@@ -42,5 +42,18 @@
     "globals": "^16.3.0",
     "prettier": "^3.6.2",
     "vite": "^7.1.2"
-  }
+  },
+  "description": "<div align=\"center\">",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yuvraj-Sarathe/AlgoScope.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yuvraj-Sarathe/AlgoScope/issues"
+  },
+  "homepage": "https://github.com/Yuvraj-Sarathe/AlgoScope#readme"
 }
