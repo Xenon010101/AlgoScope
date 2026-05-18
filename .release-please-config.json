@@ -10,8 +10,13 @@
         { "type": "fix", "section": "Fixed", "hidden": false },
         { "type": "perf", "section": "Changed", "hidden": false },
         { "type": "refactor", "section": "Changed", "hidden": false },
+        { "type": "revert", "section": "Reverted", "hidden": false },
         { "type": "docs", "section": "Documentation", "hidden": false },
-        { "type": "chore", "section": "Miscellaneous", "hidden": true }
+        { "type": "style", "section": "Styles", "hidden": true },
+        { "type": "chore", "section": "Miscellaneous", "hidden": true },
+        { "type": "build", "section": "Build System", "hidden": true },
+        { "type": "ci", "section": "CI/CD", "hidden": true },
+        { "type": "test", "section": "Tests", "hidden": true }
       ]
     }
   }
