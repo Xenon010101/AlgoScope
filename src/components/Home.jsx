@@ -129,7 +129,7 @@ export const Home = () => {
           </div>
 
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter logo-font">
-            <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-gray-500">
+            <span className="bg-clip-text text-transparent bg-gradient-to-br from-gray-600 via-gray-400 to-gray-900 ">
               Algo
             </span>
             <span className="bg-clip-text text-transparent bg-gradient-to-br from-cyan-400 to-purple-500">
