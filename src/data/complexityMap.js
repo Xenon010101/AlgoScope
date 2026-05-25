@@ -153,6 +153,20 @@ export const complexityMap = {
     worst: 'O(N log log N)',
     space: 'O(N)',
   },
+
+  prim: {
+    best: 'O((E + V) log E)',
+    average: 'O((E + V) log E)',
+    worst: 'O((E + V) log E)',
+    space: 'O(V)',
+  },
+
+  kruskal: {
+    best: 'O(E log E)',
+    average: 'O(E log E)',
+    worst: 'O(E log E)',
+    space: 'O(V + E)',
+  },
   fibonacci: {
     best: 'O(2^N)',
     average: 'O(2^N)',
