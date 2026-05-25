@@ -81,6 +81,7 @@ export default function Visualizer() {
   const [language, setLanguage] = useState(() => {
     return searchParams.get('lang') || 'javascript'
   })
+  const [isStepMode, setIsStepMode] = useState(false)
 
   const handleAlgorithmChange = (e) => {
     const newAlgo = e.target.value
@@ -122,7 +123,9 @@ export default function Visualizer() {
       const generator = algoMap[algorithm][generatorName]
       if (generator) {
         clearPlayback()
-        loadSteps(generator(baseArray, parseInt(target, 10)))
+        loadSteps(generator(baseArray, parseInt(target, 10)), {
+          autoPlay: !isStepMode,
+        })
       }
     }
   }
@@ -410,6 +413,28 @@ export default function Visualizer() {
                       max={3}
                       step={0.05}
                     />
+                  </div>
+                  <div className="flex rounded-xl overflow-hidden border border-slate-700 mb-2">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsStepMode(false)
+                        clearPlayback()
+                      }}
+                      className={`flex-1 py-2 text-xs font-semibold transition-all ${!isStepMode ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-slate-200'}`}
+                    >
+                      Auto
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsStepMode(true)
+                        clearPlayback()
+                      }}
+                      className={`flex-1 py-2 text-xs font-semibold transition-all ${isStepMode ? 'bg-cyan-600 text-white' : 'bg-slate-800 text-slate-400 hover:text-slate-200'}`}
+                    >
+                      Step
+                    </button>
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
