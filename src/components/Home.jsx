@@ -67,18 +67,19 @@ const ALGORITHMS = [
     link: '/math-theory',
   },
   {
+    title: 'Dynamic Programming',
+    description:
+      'LCS, 0/1 Knapsack, Coin Change, and LIS — watch the DP table fill step by step.',
+    path: '/dynamic-programming', // or "to" depending on your card schema
+    color: 'theme-card border-rose-500/30 hover:border-rose-400',
+    link: '/dynamic-programming',
+  },
+  {
     title: 'Backtracking',
     description:
       'N-Queens, Sudoku Solver, and Tower of Hanoi with step-by-step recursion.',
     color: 'theme-card border-rose-500/30 hover:border-rose-400',
     link: '/backtracking',
-  },
-  {
-    title: 'String Algorithms',
-    description:
-      'KMP, Rabin-Karp, and Z-Algorithm — pattern matching visualized step by step.',
-    color: 'theme-card border-violet-500/30 hover:border-violet-400',
-    link: '/string-algorithms',
   },
 ]
 

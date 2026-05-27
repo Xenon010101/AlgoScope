@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
+// import DPVisualizer from "./components/dynamicProgramming/DPVisualizer";
 
 const HAS_CLERK = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY)
 import AppLayout from './components/AppLayout'
@@ -52,6 +53,9 @@ const StringAlgoVisualizerPage = lazy(
   () => import('./components/stringAlgo/VisualizerPage')
 )
 
+const DPVisualizerPage = lazy(
+  () => import('./components/dynamicProgramming/DPVisualizer')
+)
 const PracticePage = lazy(() => import('./components/PracticePage'))
 const AboutAlgoScope = lazy(() => import('./components/about/About'))
 const NotFound = lazy(() => import('./components/PageNotFound'))
@@ -202,11 +206,11 @@ function App() {
       ),
     },
     {
-      path: '/string-algorithms',
+      path: '/dynamic-programming',
       element: (
         <Suspense fallback={<PageLoader />}>
           <AppLayout>
-            <StringAlgoVisualizerPage />
+            <DPVisualizerPage />
           </AppLayout>
         </Suspense>
       ),
