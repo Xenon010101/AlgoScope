@@ -343,28 +343,30 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
       const node = prev[row][col]
       if (node.isStart || node.isEnd) return prev
 
+      const update = (n) => ({ ...n, visited: false, path: false })
+
       if (drawMode === 'wall') {
         return prev.map((r, y) =>
           r.map((n, x) =>
             y === row && x === col
-              ? { ...n, isWall: !n.isWall, isWeighted: false, weight: 1 }
-              : n
+              ? { ...update(n), isWall: !n.isWall, isWeighted: false, weight: 1 }
+              : update(n)
           )
         )
       } else if (drawMode === 'weight') {
         return prev.map((r, y) =>
           r.map((n, x) =>
             y === row && x === col
-              ? { ...n, isWall: false, isWeighted: true, weight: 5 }
-              : n
+              ? { ...update(n), isWall: false, isWeighted: true, weight: 5 }
+              : update(n)
           )
         )
       } else if (drawMode === 'erase') {
         return prev.map((r, y) =>
           r.map((n, x) =>
             y === row && x === col
-              ? { ...n, isWall: false, isWeighted: false, weight: 1 }
-              : n
+              ? { ...update(n), isWall: false, isWeighted: false, weight: 1 }
+              : update(n)
           )
         )
       }
