@@ -294,6 +294,7 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
   const timeouts = useRef([])
   const gridRef = useRef(null)
   const speedRef = useRef(speed)
+  const isClearedRef = useRef(false)
 
   useEffect(() => {
     speedRef.current = speed
@@ -339,7 +340,10 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
 
   const handleMouseInteraction = (row, col) => {
     if (running) return
-    clearPath()
+    if (!isClearedRef.current) {
+      clearPath()
+      isClearedRef.current = true
+    }
     setGrid((prev) => {
       const node = prev[row][col]
       if (node.isStart || node.isEnd) return prev
@@ -565,7 +569,10 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
 
         <div
           className="inline-block border border-(--theme-border-strong) overflow-hidden rounded-lg"
-          onMouseLeave={() => setMousePressed(false)}
+          onMouseLeave={() => {
+            setMousePressed(false)
+            isClearedRef.current = false
+          }}
         >
           {grid.map((row, r) => (
             <div key={r} className="flex">
@@ -579,7 +586,10 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
                   onMouseEnter={() =>
                     mousePressed && handleMouseInteraction(r, c)
                   }
-                  onMouseUp={() => setMousePressed(false)}
+                  onMouseUp={() => {
+                    setMousePressed(false)
+                    isClearedRef.current = false
+                  }}
                   className={getCellClassName(node)}
                 >
                   {node.isWeighted ? node.weight : null}
