@@ -102,6 +102,7 @@ const algorithmLinks = [
   { name: 'Array Search', href: '/ldssearch' },
   { name: "Kadane's Algorithm", href: '/kadane' },
   { name: "Moore's Voting Algorithm", href: '/moore-voting' },
+  { name: 'Dynamic Programming', href: '/dynamic-programming' },
   { name: 'Math Theory', href: '/math-theory' },
   { name: 'String Algorithms', href: '/string-algorithms' },
   { name: 'Backtracking', href: '/backtracking' },

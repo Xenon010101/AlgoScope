@@ -188,6 +188,15 @@ const ALGORITHMS = [
     category: 'General',
     route: '/about',
   },
+  // Dynamic Programming
+  {
+    id: 'dp',
+    name: 'Dynamic Programming',
+    category: 'Dynamic Programming',
+    route: '/dynamic-programming',
+    keywords: ['dp', 'dynamic programming', 'lcs', 'knapsack', 'coin change', 'lis'],
+  },
+
   // Backtracking
   {
     id: 'nqueens',
@@ -202,6 +211,20 @@ const ALGORITHMS = [
       'recursion',
       'constraint',
     ],
+  },
+  {
+    id: 'sudoku',
+    name: 'Sudoku Solver',
+    category: 'Backtracking',
+    route: '/backtracking?algo=sudoku',
+    keywords: ['sudoku', 'backtracking', 'puzzle', 'constraint satisfaction'],
+  },
+  {
+    id: 'hanoi',
+    name: 'Tower of Hanoi',
+    category: 'Backtracking',
+    route: '/backtracking?algo=hanoi',
+    keywords: ['hanoi', 'tower of hanoi', 'recursion', 'backtracking'],
   },
 
   // Math Theory

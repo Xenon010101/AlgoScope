@@ -77,7 +77,6 @@ const ALGORITHMS = [
     title: 'Dynamic Programming',
     description:
       'LCS, 0/1 Knapsack, Coin Change, and LIS — watch the DP table fill step by step.',
-    path: '/dynamic-programming', // or "to" depending on your card schema
     color: 'theme-card border-rose-500/30 hover:border-rose-400',
     link: '/dynamic-programming',
   },
