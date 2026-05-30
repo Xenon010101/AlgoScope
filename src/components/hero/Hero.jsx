@@ -110,11 +110,14 @@ export function Hero() {
 
             <motion.div
               variants={item}
-              className="mt-7 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t theme-border pt-5 text-[10px] theme-text-muted sm:mt-8 sm:justify-start sm:gap-x-5 sm:pt-6 sm:text-[11px]"
+              className="mt-7 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 border-t theme-border pt-5 text-[10px] theme-text-muted sm:mt-8 sm:justify-start sm:gap-x-2 sm:pt-6 sm:text-[11px] md:flex-nowrap"
             >
               <Meta n="9+" t="visualizers" />
+              <span aria-hidden="true" className="theme-text-muted">·</span>
               <span>Runs in browser</span>
+              <span aria-hidden="true" className="theme-text-muted">·</span>
               <span>Open source</span>
+              <span aria-hidden="true" className="theme-text-muted">·</span>
               <span>Free to use</span>
             </motion.div>
           </motion.div>
