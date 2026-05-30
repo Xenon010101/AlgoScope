@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/clerk-react'
+import { useAuth } from '@clerk/clerk-react'
 // import DPVisualizer from "./components/dynamicProgramming/DPVisualizer";
 
 const HAS_CLERK = Boolean(import.meta.env.VITE_CLERK_PUBLISHABLE_KEY)
@@ -68,6 +68,13 @@ const PageLoader = () => (
   </div>
 )
 
+const ProtectedRoute = ({ children }) => {
+  const { isLoaded, isSignedIn } = useAuth()
+  if (!isLoaded) return <PageLoader />
+  if (!isSignedIn) return <Navigate to="/" replace />
+  return children
+}
+
 function App() {
   const route = createBrowserRouter([
     {
@@ -116,19 +123,12 @@ function App() {
         <Suspense fallback={<PageLoader />}>
           <AppLayout>
             {HAS_CLERK ? (
-              <>
-                <SignedIn>
-                  <PracticePage />
-                </SignedIn>
-                <SignedOut>
-                  <RedirectToSignIn />
-                </SignedOut>
-              </>
+              <ProtectedRoute>
+                <PracticePage />
+              </ProtectedRoute>
             ) : import.meta.env.DEV ? (
-              // Allow access to PracticePage only in development when Clerk is not configured
               <PracticePage />
             ) : (
-              // In non-dev environments without Clerk, redirect to home (or show unauthorized)
               <Navigate to="/" replace />
             )}
           </AppLayout>
