@@ -8,6 +8,7 @@ import { MenuSetAlgoShortestPath } from './MenuSetAlgoShortestPath'
 import { motion } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import SpeedSlider from '../SpeedSlider'
+import { useKeyboardShortcuts } from '../visualizer/useKeyboardShortcuts'
 import { shortestPathSources } from '../../algorithms/searching/shortestPathSources'
 import ComplexityCard from '../ComplexityCard'
 import ComparisonMode from './ComparisonMode'
@@ -77,6 +78,13 @@ export const ShortestPathPage = () => {
     setTarget(null)
     setRunKey(null)
   }
+
+  useKeyboardShortcuts({
+    onPlayPause: handleRun,
+    onReset: handleReset,
+    onSpeedUp: () => setSpeed((s) => Math.min(3, +(s + 0.25).toFixed(2))),
+    onSlowDown: () => setSpeed((s) => Math.max(0.25, +(s - 0.25).toFixed(2))),
+  })
 
   const canRun =
     viewMode === 'grid'

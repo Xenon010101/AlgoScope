@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useSearchParams } from 'react-router-dom'
 import SpeedSlider from '../SpeedSlider'
+import { useKeyboardShortcuts } from '../visualizer/useKeyboardShortcuts'
 import ComplexityCard from '../ComplexityCard'
 import CodePanel from '../visualizer/CodePanel'
 import { CanvasNQueens } from './CanvasNQueens'
@@ -145,6 +146,13 @@ function SoloMode() {
 
   const handleVisualize = () => setTrigger((t) => t + 1)
   const handleReset = () => setTrigger(0)
+
+  useKeyboardShortcuts({
+    onPlayPause: handleVisualize,
+    onReset: handleReset,
+    onSpeedUp: () => setSpeed((s) => Math.min(3, +(s + 0.25).toFixed(2))),
+    onSlowDown: () => setSpeed((s) => Math.max(0.25, +(s - 0.25).toFixed(2))),
+  })
 
   const handleAlgoChange = (a) => {
     setAlgo(a)

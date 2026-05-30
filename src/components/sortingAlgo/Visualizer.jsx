@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom'
 import SpeedSlider from '../SpeedSlider.jsx'
 import CodePanel from '../visualizer/CodePanel'
 import { useStepPlayback } from '../visualizer/useStepPlayback'
+import { useKeyboardShortcuts } from '../visualizer/useKeyboardShortcuts'
 import ComplexityCard from '../ComplexityCard'
 import Tooltip from '../Tooltip'
 import TestCaseManager from '../testCaseManager/TestCaseManager'
@@ -185,6 +186,22 @@ export default function Visualizer() {
     stepForward,
     stepBackward,
   } = useStepPlayback({ speed })
+
+  useKeyboardShortcuts({
+    onPlayPause: () => {
+      if (isPlaying) pausePlayback()
+      else if (hasSteps && !isComplete) playPlayback()
+    },
+    onStepForward: () => {
+      if (!isPlaying && !isComplete && hasSteps) stepForward()
+    },
+    onStepBackward: () => {
+      if (!isPlaying && currentStepIndex > 0) stepBackward()
+    },
+    onReset: handleReset,
+    onSpeedUp: () => setSpeed((s) => Math.min(3, +(s + 0.25).toFixed(2))),
+    onSlowDown: () => setSpeed((s) => Math.max(0.25, +(s - 0.25).toFixed(2))),
+  })
 
   const algorithmOptions = {
     simple: ['bubble', 'selection', 'insertion'],
