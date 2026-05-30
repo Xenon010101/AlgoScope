@@ -303,6 +303,12 @@ const GridVisualizer = ({ algorithm, runKey, speed }) => {
     gridRef.current = grid
   }, [grid])
 
+  useEffect(() => {
+    const handleWindowMouseUp = () => setMousePressed(false)
+    window.addEventListener('mouseup', handleWindowMouseUp)
+    return () => window.removeEventListener('mouseup', handleWindowMouseUp)
+  }, [])
+
   const clearTimers = useCallback(() => {
     timeouts.current.forEach((timer) => clearTimeout(timer))
     timeouts.current = []
