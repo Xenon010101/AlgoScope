@@ -39,10 +39,13 @@ export default function TestCaseManager({
 
   const load = useCallback(async () => {
     const data = await fetchCases()
+    const currentAlgoCases = algorithm
+      ? data.filter((tc) => tc.algorithm === algorithm)
+      : data
 
     if (
       !search &&
-      data.length === 0 &&
+      currentAlgoCases.length === 0 &&
       sampleCases.length > 0 &&
       !hasSeededSamples.current
     ) {
