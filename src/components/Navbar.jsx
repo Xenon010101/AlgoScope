@@ -323,15 +323,17 @@ export const Navbar = () => {
                   </SignedIn>
                 </>
               ) : (
-                <>
+                <div className="relative group">
                   <button
-                    title="Auth not configured"
                     disabled
-                    className="theme-button-primary relative group overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-200 px-6 py-2 text-sm font-bold transition-all duration-300 shadow-md opacity-50 cursor-not-allowed"
+                    className="theme-button-primary rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/40 text-slate-500 dark:text-slate-500 px-6 py-2 text-sm font-bold opacity-50 cursor-not-allowed"
                   >
                     Sign In
                   </button>
-                </>
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950 px-3 py-2 text-xs text-amber-700 dark:text-amber-300 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                    Authentication not configured. Set <code className="font-mono text-amber-800 dark:text-amber-200">VITE_CLERK_PUBLISHABLE_KEY</code> in your <code className="font-mono text-amber-800 dark:text-amber-200">.env</code> file.
+                  </div>
+                </div>
               )}
             </div>
           </div>
@@ -454,13 +456,17 @@ export const Navbar = () => {
                     </SignInButton>
                   </SignedOut>
                 ) : (
-                  <button
-                    title="Auth not configured"
-                    disabled
-                    className="w-full rounded-xl bg-slate-100 dark:bg-slate-900 px-4 py-2.5 text-sm font-semibold text-slate-500 border border-slate-200 dark:border-slate-800 transition-all duration-300 opacity-50 cursor-not-allowed"
-                  >
-                    Sign In
-                  </button>
+                  <div className="relative group w-full">
+                    <button
+                      disabled
+                      className="w-full rounded-xl bg-slate-100 dark:bg-slate-900 px-4 py-2.5 text-sm font-semibold text-slate-400 border border-slate-200 dark:border-slate-800 opacity-50 cursor-not-allowed"
+                    >
+                      Sign In
+                    </button>
+                    <div className="absolute left-0 bottom-full mb-2 w-full rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950 px-3 py-2 text-xs text-amber-700 dark:text-amber-300 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-50">
+                      Auth not configured. Set VITE_CLERK_PUBLISHABLE_KEY in .env
+                    </div>
+                  </div>
                 )}
 
                 <a
