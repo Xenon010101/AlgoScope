@@ -40,6 +40,24 @@ const algorithmColors = {
   shell: '#ec4899',
 }
 
+const formatYAxis = (value) => {
+  if (value >= 10000) return `${(value / 1000).toFixed(0)}k`
+  if (value >= 1000) return `${(value / 1000).toFixed(1)}k`
+  return value
+}
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (!active || !payload?.length) return null
+  return (
+    <div className="rounded-lg border border-slate-600 bg-slate-800 px-3 py-2 text-xs shadow-lg">
+      <p className="text-slate-400">Input Size: <span className="font-semibold text-slate-200">{label}</span></p>
+      <p className="text-slate-400" style={{ color: payload[0].color }}>
+        Operations: <span className="font-semibold">{payload[0].value.toLocaleString()}</span>
+      </p>
+    </div>
+  )
+}
+
 export default function ComplexityGraph({ algorithm }) {
   const data = useMemo(() => generateData(algorithm), [algorithm])
 
@@ -60,20 +78,22 @@ export default function ComplexityGraph({ algorithm }) {
 
       <div className="h-[260px] sm:h-[320px] w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
+          <LineChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
 
-            <XAxis dataKey="size" stroke="#cbd5e1" />
+            <XAxis dataKey="size" stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12 }} tickLine={false} />
 
-            <YAxis stroke="#cbd5e1" />
+            <YAxis stroke="#64748b" tick={{ fill: '#94a3b8', fontSize: 12 }} tickLine={false} tickFormatter={formatYAxis} />
 
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} cursor={{ stroke: '#64748b', strokeDasharray: '3 3' }} />
 
             <Line
               type="monotone"
               dataKey="performance"
               stroke={algorithmColors[algorithm]}
               strokeWidth={3}
+              dot={false}
+              activeDot={{ r: 5, strokeWidth: 2, stroke: '#fff' }}
             />
           </LineChart>
         </ResponsiveContainer>
