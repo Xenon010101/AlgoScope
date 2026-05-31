@@ -36,8 +36,6 @@ export const MenuSelectNodesShortestPath = ({
   algorithm,
   nodeIds = [],
 }) => {
-  const nodeOptions = Array.from({ length: 9 }, (_, i) => i + 1)
-
   if (algorithm === 'kruskal') {
     return (
       <div className="space-y-4">
@@ -76,7 +74,7 @@ export const MenuSelectNodesShortestPath = ({
               <option value="">
                 {algorithm === 'prim' ? 'Choose Start Node' : 'Choose Source'}
               </option>
-              {nodeOptions.map((n) => (
+              {nodeIds.map((n) => (
                 <option key={n} value={n}>
                   {n}
                 </option>
@@ -93,12 +91,13 @@ export const MenuSelectNodesShortestPath = ({
               className="w-full"
             >
               <select
+                id="sp-target-select"
                 value={target ?? ''}
                 onChange={(e) => setTarget(e.target.value || null)}
                 className="w-full bg-slate-800 text-white text-sm border border-slate-700 rounded-xl pl-4 pr-10 py-3 transition duration-300 focus:outline-none focus:border-cyan-500 hover:border-slate-500 shadow-sm appearance-none cursor-pointer"
               >
                 <option value="">Choose Target</option>
-                {nodeOptions.map((n) => (
+                {nodeIds.map((n) => (
                   <option key={n} value={n}>
                     {n}
                   </option>
@@ -108,29 +107,6 @@ export const MenuSelectNodesShortestPath = ({
             <ChevronIcon />
           </div>
         )}
-
-        <div className="relative">
-          <Tooltip
-            content="Choose the target node"
-            position="top"
-            className="w-full"
-          >
-            <select
-              id="sp-target-select"
-              value={target ?? ''}
-              onChange={(e) => setTarget(e.target.value || null)}
-              className="w-full bg-slate-800 text-white text-sm border border-slate-700 rounded-xl pl-4 pr-10 py-3 transition duration-300 focus:outline-none focus:border-cyan-500 hover:border-slate-500 shadow-sm appearance-none cursor-pointer"
-            >
-              <option value="">Choose Target</option>
-              {nodeIds.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </Tooltip>
-          <ChevronIcon />
-        </div>
       </div>
 
       {nodeIds.length === 0 && (
